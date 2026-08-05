@@ -4,42 +4,36 @@
    all feature modules once the real DOM nodes exist.
    ========================================================= */
 
-function safeInit(label, fn) {
-  try {
-    fn();
-  } catch (err) {
-    console.error(`[init failed] ${label}:`, err);
-  }
-}
-
 document.addEventListener('DOMContentLoaded', async () => {
   // 1. Theme must apply before paint-sensitive content shows
-  safeInit('theme', () => window.PortfolioTheme.initTheme());
+  window.PortfolioTheme.initTheme();
 
   // 2. Global effects that don't depend on injected sections
-  safeInit('cursor', () => window.PortfolioCursor.initCursor());
-  safeInit('scrollProgress', () => window.PortfolioScrollProgress.initScrollProgress());
+  window.PortfolioCursor.initCursor();
+  window.PortfolioScrollProgress.initScrollProgress();
 
   // 3. Fetch and inject every section partial
   await window.PortfolioSectionsLoader.loadAllSections();
 
-  // 4. Now that the real markup exists, wire up everything else —
-  //    each on its own safeInit so one failure can't block the rest
-  safeInit('theme.bindToggle', () => window.PortfolioTheme.bindToggle());
-  safeInit('navbar', () => window.PortfolioNavbar.initNavbar());
-  safeInit('typing', () => window.PortfolioTyping.initTyping());
-  safeInit('counters', () => window.PortfolioCounters.initCounters());
-  safeInit('skills', () => window.PortfolioSkills.initSkills());
-  safeInit('projects.carousel', () => window.PortfolioProjects.init3DCarousel());
-  safeInit('projects.tilt', () => window.PortfolioProjects.initTilt());
-  safeInit('certificates', () => window.PortfolioCertificates.initCertModal());
-  safeInit('contact', () => window.PortfolioContact.initContactForm());
-  safeInit('effects.ripple', () => window.PortfolioEffects.initRipple());
-  safeInit('effects.reveal', () => window.PortfolioEffects.initReveal());
+  // 4. Now that the real markup exists, wire up everything else
+  try {
+    window.PortfolioTheme.bindToggle();
+    window.PortfolioNavbar.initNavbar();
+    window.PortfolioTyping.initTyping();
+    window.PortfolioCounters.initCounters();
+    window.PortfolioSkills.initSkills();
+    window.PortfolioProjects.init3DCarousel();
+    window.PortfolioProjects.initTilt();
+    window.PortfolioCertificates.initCertModal();
+    window.PortfolioContact.initContactForm();
+    window.PortfolioEffects.initRipple();
+    window.PortfolioEffects.initReveal();
+  } catch (err) {
+    console.error('One or more section modules failed to init:', err);
+  }
 
   const yearEl = document.getElementById('footerYear');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  // 5. Hide the loading screen last, once content is in place
   window.PortfolioLoader.hideLoader();
 });

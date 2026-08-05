@@ -47,8 +47,10 @@
         const opacity = absOffset > 2 ? 0 : 1 - absOffset * 0.28;
         const zIndex = 100 - absOffset;
 
-        card.style.transform =
+        const baseTransform =
           `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`;
+        card.dataset.baseTransform = baseTransform;
+        card.style.transform = baseTransform;
         card.style.opacity = opacity;
         card.style.zIndex = zIndex;
         card.style.pointerEvents = absOffset > 2 ? 'none' : 'auto';
@@ -99,4 +101,54 @@
   }
 
   function initTilt() {
-    // For any OTHER
+    // Subtle 3D tilt-on-hover for each project card, for extra depth
+    // on top of the coverflow carousel. Skipped entirely on touch
+    // devices and for users who prefer reduced motion.
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+    const isTouch = window.matchMedia('(hover: none)').matches;
+    if (prefersReducedMotion || isTouch) return;
+
+    const cards = document.querySelectorAll('.project-card');
+    if (!cards.length) return;
+
+    const maxTilt = 8; // degrees
+
+    cards.forEach((card) => {
+      let frame = null;
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const percentX = x / rect.width - 0.5;
+        const percentY = y / rect.height - 0.5;
+
+        const tiltX = (-percentY * maxTilt).toFixed(2);
+        const tiltY = (percentX * maxTilt).toFixed(2);
+
+        if (frame) cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const base = card.dataset.baseTransform || '';
+          card.style.transform =
+            `${base} rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+          card.classList.add('is-tilting');
+        });
+      });
+
+      card.addEventListener('mouseleave', () => {
+        if (frame) cancelAnimationFrame(frame);
+        const base = card.dataset.baseTransform || '';
+        card.style.transform = base;
+        card.classList.remove('is-tilting');
+      });
+    });
+  }
+
+  window.PortfolioProjects = {
+    init3DCarousel,
+    initTilt,
+  };
+})();
