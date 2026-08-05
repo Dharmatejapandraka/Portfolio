@@ -1,0 +1,67 @@
+/* =========================================================
+   ABOUT.CSS
+   ========================================================= */
+
+.about-card {
+  padding: clamp(2rem, 4vw, 3.5rem);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.about-info-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.about-info-item .label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+.about-info-item .value {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.about-text p { color: var(--text-secondary); margin-bottom: 1.25rem; }
+
+/* Animated counters */
+.counters-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.counter-box {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(var(--primary-rgb), 0.04);
+  transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+.counter-box:hover { transform: translateY(-6px); border-color: var(--primary); }
+.counter-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  color: var(--primary);
+}
+.counter-num span { color: var(--accent); }
+.counter-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 850px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-info-list { grid-template-columns: 1fr 1fr; }
+}

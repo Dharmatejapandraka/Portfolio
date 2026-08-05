@@ -1,0 +1,55 @@
+/* =========================================================
+   EDUCATION.CSS — vertical timeline
+   ========================================================= */
+
+.timeline {
+  position: relative;
+  max-width: 780px;
+  margin-inline: auto;
+  padding-left: 2.5rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--gradient-primary);
+  opacity: 0.4;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 1.75rem 1.75rem 1.75rem 2rem;
+  margin-bottom: 2rem;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.5rem;
+  top: 2rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3px solid var(--primary);
+  box-shadow: 0 0 0 5px rgba(var(--primary-rgb), 0.15);
+}
+
+.timeline-year {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--primary);
+  margin-bottom: 0.4rem;
+  display: block;
+}
+.timeline-title { font-size: 1.15rem; margin-bottom: 0.3rem; }
+.timeline-place { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; }
+.timeline-desc { color: var(--text-secondary); font-size: 0.9rem; }
+
+@media (max-width: 600px) {
+  .timeline { padding-left: 1.5rem; }
+  .timeline-item { padding-left: 1rem; }
+  .timeline-item::before { left: -1.5rem; }
+}

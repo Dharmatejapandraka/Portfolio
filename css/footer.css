@@ -1,0 +1,48 @@
+/* =========================================================
+   FOOTER.CSS
+   ========================================================= */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding-block: 3rem;
+}
+.footer-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+.footer-logo {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.footer-logo .dot { color: var(--primary); }
+
+.footer-links { display: flex; gap: 1.75rem; flex-wrap: wrap; }
+.footer-links a { color: var(--text-secondary); font-size: 0.9rem; transition: color var(--transition-fast); }
+.footer-links a:hover { color: var(--primary); }
+
+.footer-socials { display: flex; gap: 0.8rem; }
+.footer-socials a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+.footer-socials a:hover { background: var(--gradient-primary); border-color: transparent; color: #fff; }
+
+.footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}

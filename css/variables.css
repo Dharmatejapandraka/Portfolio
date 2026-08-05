@@ -1,0 +1,68 @@
+/* =========================================================
+   VARIABLES.CSS
+   Central design tokens. Switching data-theme on <html>
+   swaps every color instantly — nothing else needs to change.
+   ========================================================= */
+
+:root {
+  /* ---------- Dark theme (default) ---------- */
+  --bg: #0F172A;
+  --bg-rgb: 15, 23, 42;
+  --card: #1E293B;
+  --card-rgb: 30, 41, 59;
+  --primary: #38BDF8;
+  --primary-rgb: 56, 189, 248;
+  --accent: #8B5CF6;
+  --accent-rgb: 139, 92, 246;
+  --text: #FFFFFF;
+  --text-secondary: #94A3B8;
+  --border: rgba(148, 163, 184, 0.15);
+  --glass-bg: rgba(30, 41, 59, 0.55);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(15, 23, 42, 0.65);
+  --shadow: rgba(0, 0, 0, 0.45);
+  --scrollbar-track: #0b1222;
+
+  /* ---------- Typography ---------- */
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ---------- Gradients ---------- */
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--accent));
+  --gradient-glow: radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%);
+
+  /* ---------- Layout ---------- */
+  --container-max: 1240px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --section-pad: clamp(4rem, 8vw, 7rem);
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s var(--ease);
+  --transition-base: 0.4s var(--ease);
+  --transition-slow: 0.8s var(--ease);
+}
+
+/* ---------- Light theme overrides ---------- */
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --bg-rgb: 248, 250, 252;
+  --card: #FFFFFF;
+  --card-rgb: 255, 255, 255;
+  --primary: #2563EB;
+  --primary-rgb: 37, 99, 235;
+  --accent: #7C3AED;
+  --accent-rgb: 124, 58, 237;
+  --text: #0F172A;
+  --text-secondary: #475569;
+  --border: rgba(15, 23, 42, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(15, 23, 42, 0.06);
+  --nav-bg: rgba(248, 250, 252, 0.7);
+  --shadow: rgba(15, 23, 42, 0.12);
+  --scrollbar-track: #e2e8f0;
+}
