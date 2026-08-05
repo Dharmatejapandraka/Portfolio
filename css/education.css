@@ -48,8 +48,13 @@
 .timeline-place { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; }
 .timeline-desc { color: var(--text-secondary); font-size: 0.9rem; }
 
-@media (max-width: 600px) {
-  .timeline { padding-left: 1.5rem; }
-  .timeline-item { padding-left: 1rem; }
-  .timeline-item::before { left: -1.5rem; }
+.cert-3d-stage {
+  overflow: hidden;
+}
+
+@media (max-width: 560px) {
+  .cert-3d-stage { height: 380px; }
+  .cert-3d-card { width: 240px; height: 320px; margin: -160px 0 0 -120px; }
+  .cert-3d-card.pos-left1,
+  .cert-3d-card.pos-right1 { opacity: 0; pointer-events: none; }
 }

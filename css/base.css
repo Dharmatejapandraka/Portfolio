@@ -301,3 +301,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-radius: 0 0 8px 0;
 }
 .skip-link:focus { left: 0; }
+
+/* ---------- Mobile overflow guard ---------- */
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+body {
+  max-width: 100%;
+}
