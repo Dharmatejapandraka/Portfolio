@@ -28,7 +28,7 @@
     const target = document.getElementById(id);
     if (!target) return;
     try {
-      const res = await fetch(file);
+      const res = await fetch(file, { cache: 'no-store' });
       if (!res.ok) throw new Error(`${file} responded ${res.status}`);
       target.innerHTML = await res.text();
     } catch (err) {
